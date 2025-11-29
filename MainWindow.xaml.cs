@@ -1,32 +1,31 @@
-﻿using MorskoyGoy.MVVMCore;
-using System.Text;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-
-namespace MorskoyGoy
+﻿namespace MorskoyGoy
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
+    using System.ComponentModel;
+    using System.Windows;
+    using MorskoyGoy.ViewModels;
+
     public partial class MainWindow : Window
     {
- 
         public MainWindow()
         {
-            this.InitializeComponent();
-            this.DataContext = new ViewShellBaseViewModel();
+            InitializeComponent();
+            this.DataContext = new MainWindowViewModel();
         }
 
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        private void Window_Closing(object sender, CancelEventArgs e)
         {
+            if (this.DataContext is MainWindowViewModel mainWindowViewModel)
+            {
+                if (mainWindowViewModel.ViewShell.Client != null)
+                {
+                    mainWindowViewModel.ViewShell.Client.Close();
+                }
 
+                if (mainWindowViewModel.ViewShell.Server != null)
+                {
+                    mainWindowViewModel.ViewShell.Server.Shutdown();
+                }
+            }
         }
     }
 }

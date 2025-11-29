@@ -4,16 +4,41 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MorskoyGoy"
+        xmlns:viewModels="clr-namespace:MorskoyGoy.ViewModels"
+        xmlns:viewRepresenter="clr-namespace:MorskoyGoy.ViewModels.ViewRepresenter"
+        xmlns:view="clr-namespace:MorskoyGoy.View"
+        xmlns:view_client="clr-namespace:MorskoyGoy.View.Client"
         mc:Ignorable="d"
         Title="MorskoyGoy" Height="640" Width="960" MinWidth="960" MinHeight="640">
+
+    <Window.Resources>
+        <!-- DataTemplates для связки ViewModel -> View -->
+        <DataTemplate DataType="{x:Type viewRepresenter:MainMenuViewModel}">
+            <view:MainMenu DataContext="{Binding}" />
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type viewRepresenter:ServerModeViewModel}">
+            <view:ServerMode DataContext="{Binding}" />
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type viewRepresenter:EnterServerIPViewModel}">
+            <view_client:EnterServerIP DataContext="{Binding}" />
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type viewRepresenter:LobbyViewModel}">
+            <view_client:Lobby DataContext="{Binding}" />
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type viewRepresenter:BattleFieldViewModel}">
+            <view_client:BattleField DataContext="{Binding}" />
+        </DataTemplate>
+    </Window.Resources>
     <Grid>
         <Grid.Background>
             <SolidColorBrush Color="LightBlue"/>
         </Grid.Background>
         <Border Padding="20" BorderBrush="Transparent" BorderThickness="0">
-            <TextBlock Text="Морской Гой  - Погнали!" 
-                      HorizontalAlignment="Center" VerticalAlignment="Center"
-                      FontSize="20" Foreground="White"/>
+            <ContentControl Content="{Binding ViewShell.View}" />
         </Border>
     </Grid>
 </Window>
