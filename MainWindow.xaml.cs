@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using MorskoyGoy.MVVMCore;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -16,9 +17,16 @@ namespace MorskoyGoy
     /// </summary>
     public partial class MainWindow : Window
     {
+ 
         public MainWindow()
         {
-            InitializeComponent();
+            this.InitializeComponent();
+            this.DataContext = new ViewShellBaseViewModel();
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
         }
     }
 }

@@ -5,8 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MorskoyGoy"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MorskoyGoy" Height="640" Width="960" MinWidth="960" MinHeight="640">
     <Grid>
-
+        <Grid.Background>
+            <SolidColorBrush Color="LightBlue"/>
+        </Grid.Background>
+        <Border Padding="20" BorderBrush="Transparent" BorderThickness="0">
+            <TextBlock Text="Морской Гой  - Погнали!" 
+                      HorizontalAlignment="Center" VerticalAlignment="Center"
+                      FontSize="20" Foreground="White"/>
+        </Border>
     </Grid>
 </Window>
